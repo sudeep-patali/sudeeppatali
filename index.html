@@ -52,7 +52,7 @@
     background: var(--card);
     box-shadow: 0 1px 10px rgba(0,0,0,0.06), 0 0 7px var(--glow);
   }
-  html.light .skill-card:hover {
+  html.light .skill-card:hover, html.light .skill-card:active, html.light .skill-card.touch-active {
     box-shadow: 0 0 20px var(--glow);
     border-color: var(--accent);
   }
@@ -68,7 +68,7 @@
     background: var(--card);
     box-shadow: 0 1px 10px rgba(0,0,0,0.06), 0 0 7px var(--glow);
   }
-  html.light .project-card:hover {
+  html.light .project-card:hover, html.light .project-card:active, html.light .project-card.touch-active {
     box-shadow: 0 0 20px var(--glow);
     border-color: var(--accent);
   }
@@ -91,7 +91,7 @@
     background: var(--card);
     box-shadow: 0 1px 10px rgba(0,0,0,0.06), 0 0 7px var(--glow);
   }
-  html.light .exp-card:hover {
+  html.light .exp-card:hover, html.light .exp-card:active, html.light .exp-card.touch-active {
     box-shadow: 0 0 20px var(--glow);
     border-color: var(--accent);
   }
@@ -102,7 +102,7 @@
     background: var(--card);
     box-shadow: 0 1px 10px rgba(0,0,0,0.06), 0 0 7px var(--glow);
   }
-  html.light .edu-card:hover {
+  html.light .edu-card:hover, html.light .edu-card:active, html.light .edu-card.touch-active {
     box-shadow: 0 0 20px var(--glow);
     border-color: var(--accent);
   }
@@ -113,7 +113,7 @@
     background: var(--card);
     box-shadow: 0 1px 10px rgba(0,0,0,0.06), 0 0 7px var(--glow);
   }
-  html.light .cert-card:hover {
+  html.light .cert-card:hover, html.light .cert-card:active, html.light .cert-card.touch-active {
     box-shadow: 0 0 20px var(--glow);
     border-color: var(--accent);
   }
@@ -131,7 +131,7 @@
     font-weight: 500;
   }
   html.light .hobby-pill::before { background: rgba(0,110,86,0.07); }
-  html.light .hobby-pill:hover {
+  html.light .hobby-pill:hover, html.light .hobby-pill:active, html.light .hobby-pill.touch-active {
     color: #006e56;
     border-color: var(--accent);
     box-shadow: 0 0 20px var(--glow);
@@ -148,12 +148,12 @@
     background: #006e56;
     color: #fff;
   }
-  html.light .btn-primary:hover { background: #005542; }
+  html.light .btn-primary:hover, html.light .btn-primary:active, html.light .btn-primary.touch-active { background: #005542; }
   html.light .btn-secondary {
     color: #006e56;
     border-color: #006e56;
   }
-  html.light .btn-secondary:hover { background: rgba(0,110,86,0.08); }
+  html.light .btn-secondary:hover, html.light .btn-secondary:active, html.light .btn-secondary.touch-active { background: rgba(0,110,86,0.08); }
 
   html.light .detail-value { color: #0f0f1a; font-weight: 500; }
 
@@ -165,7 +165,7 @@
 
   html.light .section-title { color: #0f0f1a; }
   html.light .nav-links a { color: #3d3d55; font-weight: 500; }
-  html.light .nav-links a:hover { color: #006e56; }
+  html.light .nav-links a:hover, html.light .nav-links a:active, html.light .nav-links a.touch-active { color: #006e56; }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -201,6 +201,15 @@
     z-index: 9998;
     transition: all 0.25s ease;
     opacity: 0.5;
+  }
+
+  /* Touch devices: no real cursor exists, so drop the custom cursor entirely
+     and restore normal touch/tap behavior for buttons, links & toggles */
+  @media (hover: none), (pointer: coarse) {
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+    .btn-primary, .btn-secondary, .theme-toggle, .contact-link,
+    .nav-links a, .hobby-pill { cursor: pointer; }
   }
 
   /* Noise texture overlay */
@@ -252,8 +261,8 @@
     background: var(--accent);
     transition: width 0.3s;
   }
-  .nav-links a:hover { color: var(--accent); }
-  .nav-links a:hover::after { width: 100%; }
+  .nav-links a:hover, .nav-links a:active, .nav-links a.touch-active { color: var(--accent); }
+  .nav-links a:hover::after, .nav-links a:active::after, .nav-links a.touch-active::after { width: 100%; }
 
   /* Theme Toggle */
   .theme-toggle {
@@ -406,7 +415,7 @@
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
     box-shadow: 0 0 0 rgba(0,0,0,0);
   }
-  .btn-primary:hover { background: #5fffff; transform: translateY(-2px); box-shadow: 0 0 16px var(--glow), 0 0 40px var(--glow); }
+  .btn-primary:hover, .btn-primary:active, .btn-primary.touch-active { background: #5fffff; transform: translateY(-2px); box-shadow: 0 0 16px var(--glow), 0 0 40px var(--glow); }
 
   .btn-secondary {
     padding: 0.9rem 2.5rem;
@@ -423,7 +432,7 @@
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
     transition: all 0.3s, box-shadow 0.3s;
   }
-  .btn-secondary:hover { background: rgba(127,255,212,0.08); transform: translateY(-2px); box-shadow: 0 0 16px var(--glow), 0 0 36px var(--glow); border-color: var(--accent); }
+  .btn-secondary:hover, .btn-secondary:active, .btn-secondary.touch-active { background: rgba(127,255,212,0.08); transform: translateY(-2px); box-shadow: 0 0 16px var(--glow), 0 0 36px var(--glow); border-color: var(--accent); }
 
   .hero-image-wrap {
     position: absolute;
@@ -449,7 +458,7 @@
     filter: drop-shadow(0 0 30px var(--glow)) drop-shadow(0 10px 40px rgba(0,0,0,0.5));
     transition: filter 0.4s;
   }
-  .hero-avatar:hover { filter: drop-shadow(0 0 46px var(--glow-strong)) drop-shadow(0 10px 40px rgba(0,0,0,0.5)); }
+  .hero-avatar:hover, .hero-avatar:active, .hero-avatar.touch-active { filter: drop-shadow(0 0 46px var(--glow-strong)) drop-shadow(0 10px 40px rgba(0,0,0,0.5)); }
   .hero-avatar img {
     display: block;
     width: 100%;
@@ -573,8 +582,8 @@
     background: var(--accent);
     transition: height 0.4s;
   }
-  .skill-card:hover { transform: translateY(-4px); border-color: rgba(127,255,212,0.4); box-shadow: 0 0 18px var(--glow); }
-  .skill-card:hover::before { height: 100%; }
+  .skill-card:hover, .skill-card:active, .skill-card.touch-active { transform: translateY(-4px); border-color: rgba(127,255,212,0.4); box-shadow: 0 0 18px var(--glow); }
+  .skill-card:hover::before, .skill-card:active::before, .skill-card.touch-active::before { height: 100%; }
 
   .skill-category {
     font-family: 'DM Mono', monospace;
@@ -630,8 +639,8 @@
     opacity: 0;
     transition: opacity 0.4s;
   }
-  .project-card:hover { transform: translateY(-6px); border-color: rgba(127,255,212,0.4); box-shadow: 0 0 18px var(--glow); }
-  .project-card:hover::after { opacity: 1; }
+  .project-card:hover, .project-card:active, .project-card.touch-active { transform: translateY(-6px); border-color: rgba(127,255,212,0.4); box-shadow: 0 0 18px var(--glow); }
+  .project-card:hover::after, .project-card:active::after, .project-card.touch-active::after { opacity: 1; }
 
   .project-category {
     margin-bottom: 3.5rem;
@@ -732,7 +741,7 @@
     transition: border-color 0.3s, box-shadow 0.3s;
     box-shadow: 0 3px 16px rgba(0,0,0,0.3), 0 0 12px var(--glow);
   }
-  .exp-card:hover { border-color: rgba(127,255,212,0.4); box-shadow: 0 0 18px var(--glow); }
+  .exp-card:hover, .exp-card:active, .exp-card.touch-active { border-color: rgba(127,255,212,0.4); box-shadow: 0 0 18px var(--glow); }
   .exp-card::before {
     content: '';
     position: absolute;
@@ -785,7 +794,7 @@
     transition: all 0.3s, background 0.4s, box-shadow 0.3s;
     box-shadow: 0 3px 16px rgba(0,0,0,0.3), 0 0 12px var(--glow);
   }
-  .edu-card:hover { border-color: rgba(127,255,212,0.4); transform: translateY(-3px); box-shadow: 0 0 18px var(--glow); }
+  .edu-card:hover, .edu-card:active, .edu-card.touch-active { border-color: rgba(127,255,212,0.4); transform: translateY(-3px); box-shadow: 0 0 18px var(--glow); }
   .edu-year {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
@@ -837,7 +846,7 @@
     transition: all 0.3s, background 0.4s, box-shadow 0.3s;
     box-shadow: 0 3px 16px rgba(0,0,0,0.3), 0 0 12px var(--glow);
   }
-  .cert-card:hover { border-color: rgba(127,255,212,0.4); transform: translateX(4px); box-shadow: 0 0 18px var(--glow); }
+  .cert-card:hover, .cert-card:active, .cert-card.touch-active { border-color: rgba(127,255,212,0.4); transform: translateX(4px); box-shadow: 0 0 18px var(--glow); }
   .cert-icon {
     width: 36px; height: 36px;
     background: rgba(127,255,212,0.08);
@@ -883,7 +892,7 @@
     clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
     box-shadow: 0 3px 16px rgba(0,0,0,0.3), 0 0 12px var(--glow);
   }
-  .ach-card:hover { transform: translateY(-4px); border-color: rgba(127,255,212,0.4); box-shadow: 0 0 18px var(--glow); }
+  .ach-card:hover, .ach-card:active, .ach-card.touch-active { transform: translateY(-4px); border-color: rgba(127,255,212,0.4); box-shadow: 0 0 18px var(--glow); }
   .ach-icon {
     font-family: 'Playfair Display', serif;
     font-size: 1.6rem;
@@ -906,7 +915,7 @@
     background: var(--card);
     box-shadow: 0 1px 10px rgba(0,0,0,0.06), 0 0 7px var(--glow);
   }
-  html.light .ach-card:hover {
+  html.light .ach-card:hover, html.light .ach-card:active, html.light .ach-card.touch-active {
     box-shadow: 0 0 20px var(--glow);
     border-color: var(--accent);
   }
@@ -940,8 +949,8 @@
     transform: translateX(-100%);
     transition: transform 0.3s;
   }
-  .hobby-pill:hover { color: var(--accent); border-color: rgba(127,255,212,0.4); box-shadow: 0 0 18px var(--glow); }
-  .hobby-pill:hover::before { transform: translateX(0); }
+  .hobby-pill:hover, .hobby-pill:active, .hobby-pill.touch-active { color: var(--accent); border-color: rgba(127,255,212,0.4); box-shadow: 0 0 18px var(--glow); }
+  .hobby-pill:hover::before, .hobby-pill:active::before, .hobby-pill.touch-active::before { transform: translateX(0); }
 
   /* Contact / Footer */
   #contact {
@@ -998,7 +1007,7 @@
     clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
     box-shadow: 0 3px 16px rgba(0,0,0,0.3), 0 0 12px var(--glow);
   }
-  .contact-link:hover {
+  .contact-link:hover, .contact-link:active, .contact-link.touch-active {
     color: var(--accent);
     border-color: rgba(127,255,212,0.4);
     box-shadow: 0 0 18px var(--glow);
@@ -1010,7 +1019,7 @@
     color: #0f0f1a;
     box-shadow: 0 1px 10px rgba(0,0,0,0.06), 0 0 7px var(--glow);
   }
-  html.light .contact-link:hover {
+  html.light .contact-link:hover, html.light .contact-link:active, html.light .contact-link.touch-active {
     color: #006e56;
     border-color: var(--accent);
     box-shadow: 0 0 20px var(--glow);
@@ -1067,7 +1076,7 @@
     pointer-events: none;
     z-index: 1;
   }
-  .project-card:hover .sheen { left: 130%; }
+  .project-card:hover .sheen, .project-card:active .sheen, .project-card.touch-active .sheen { left: 130%; }
 
   /* Section number tick-in */
   .section-num {
@@ -1127,18 +1136,33 @@
     nav { padding: 1.2rem 2rem; }
     .nav-links { gap: 1.5rem; }
     section { padding: 5rem 2rem; }
-    #hero { padding: 8rem 2rem 4rem; }
+    #hero {
+      padding: 8rem 2rem 4rem;
+      flex-direction: column;
+      align-items: stretch;
+    }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+    /* Reflow hero children into: tag, name, sub -> image -> desc, cta */
+    .hero-content { display: contents; }
+    .hero-tag { order: 1; }
+    .hero-name { order: 2; }
+    .hero-sub { order: 3; }
+    .hero-image-wrap { order: 4; }
+    .hero-desc { order: 5; }
+    .hero-cta { order: 6; }
+
     .hero-image-wrap {
       position: static;
       transform: none;
       flex-direction: column;
       align-items: center;
-      margin-top: 3rem;
+      margin: 1.5rem 0;
       opacity: 1;
       animation: none;
+      width: 100%;
     }
-    .hero-avatar { width: min(75vw, 380px); height: min(55vh, 520px); max-width: 90vw; }
+    .hero-avatar { width: min(75vw, 380px); height: min(55vh, 520px); max-width: 90vw; margin: 0 auto; }
     .hero-stats {
       position: static;
       transform: none;
@@ -1790,6 +1814,35 @@
 </footer>
 
 <script>
+  // Enable :active styles reliably on iOS Safari / some Android browsers
+  // (a documented quirk: :active never fires on tap unless a touch listener exists)
+  document.addEventListener('touchstart', function () {}, { passive: true });
+
+  // Explicit touch-feedback class so hover-style effects (glow, lift, border)
+  // are guaranteed to show on tap across all mobile browsers, not just :active.
+  (function () {
+    const interactiveSelectors = [
+      '.btn-primary', '.btn-secondary', '.skill-card', '.project-card',
+      '.exp-card', '.edu-card', '.cert-card', '.ach-card', '.hobby-pill',
+      '.contact-link', '.nav-links a', '.hero-avatar', '.theme-toggle'
+    ].join(',');
+
+    document.querySelectorAll(interactiveSelectors).forEach(el => {
+      let releaseTimer;
+      el.addEventListener('touchstart', () => {
+        clearTimeout(releaseTimer);
+        el.classList.add('touch-active');
+      }, { passive: true });
+
+      const release = () => {
+        // keep the effect visible briefly after release so it's actually noticeable on a quick tap
+        releaseTimer = setTimeout(() => el.classList.remove('touch-active'), 250);
+      };
+      el.addEventListener('touchend', release, { passive: true });
+      el.addEventListener('touchcancel', release, { passive: true });
+    });
+  })();
+
   // Theme Toggle
   const toggleBtn = document.getElementById('themeToggle');
   const html = document.documentElement;
